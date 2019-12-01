@@ -3,15 +3,18 @@ import  *  as  ctrl  from "./controllers.js";
 (() => {
     const app = Sammy('#main', function () {
         this.use('Handlebars', 'hbs');
+        //home and about
         this.get('#/', ctrl.loadHome);
         this.get('#/home', ctrl.loadHome);
-
         this.get('#/about', ctrl.getAboutController);
+        //login and logout
         this.get('#/login', ctrl.getLoginController);
-        this.get('#/logout', ctrl.getLogoutController)
+        this.post('#/login', ctrl.postLoginController);
+        this.get('#/logout', ctrl.getLogoutController);
+        //register
         this.get('#/register', ctrl.getRegisterController);
         this.post('#/register', ctrl.postRegisterController);
-        this.post('#/login', ctrl.postLoginController);
+        //catalog and teams details
         this.get('#/catalog', ctrl.getCatalogController)
         this.get('#/create', ctrl.getCreateController)
         this.post('#/create', ctrl.postCreateController);
