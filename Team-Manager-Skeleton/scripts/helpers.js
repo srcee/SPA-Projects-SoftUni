@@ -6,11 +6,11 @@ export function getSessionInfo(ctx) {
 export function getMemberInfo(ctx) {
     if (ctx.members.find(x => x.username === ctx.username) !== undefined) {
         return true;
-    }
-    return false
+    };
+    return false;
 };
 
 export function createLoadPartials(partials, template) {
     this.loadPartials(partials)
-        .then(function () { this.partial(`../templates/${template}`) })
-}
+        .partial(`../templates/${template}`);
+};
