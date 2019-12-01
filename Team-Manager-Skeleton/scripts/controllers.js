@@ -12,7 +12,7 @@ export function loadHome(ctx) {
 // get
 export function getLoginController(ctx) {
     getSessionInfo(ctx);
-    partials['loginForm'] = './templates/login/loginForm.hbs'
+    partials['loginForm'] = './templates/login/loginForm.hbs';
 
     createLoadPartials.call(this, partials, 'login/loginPage.hbs');
 };
@@ -27,13 +27,13 @@ export function getLogoutController(ctx) {
 };
 export function getRegisterController(ctx) {
     getSessionInfo(ctx);
-    partials['registerForm'] = './templates/register/registerForm.hbs'
+    partials['registerForm'] = './templates/register/registerForm.hbs';
 
     createLoadPartials.call(this, partials, 'register/registerPage.hbs');
 };
 export function getCatalogController(ctx) {
     getSessionInfo(ctx);
-    partials['team'] = './templates/catalog/team.hbs'
+    partials['team'] = './templates/catalog/team.hbs';
     get('appdata', 'teams', 'Kinvey')
         .then(data => {
             ctx.teams = data;
@@ -51,7 +51,7 @@ export function getJoinController(ctx) {
     const id = ctx.params.teamId;
     get('appdata', `teams/${id}`, 'Kinvey')
         .then(teamInfo => {
-            const newMember = { username: ctx.username }
+            const newMember = { username: ctx.username };
             teamInfo.members.push(newMember);
 
             return put('appdata', `teams/${id}`, teamInfo, 'Kinvey');
@@ -80,7 +80,7 @@ export function getTeamInfoController(ctx) {
     const id = ctx.params.teamId;
     get('appdata', `teams/${id}`, 'Kinvey')
         .then((data) => {
-            getSessionInfo(ctx)
+            getSessionInfo(ctx);
             ctx.teamId = data._id;
             ctx.members = data.members;
             ctx.name = data.name;
@@ -91,7 +91,7 @@ export function getTeamInfoController(ctx) {
 
             createLoadPartials.call(this, partials, 'catalog/details.hbs');
         })
-        .catch(console.error)
+        .catch(console.error);
 };
 // post
 export function postRegisterController(ctx) {
@@ -101,10 +101,10 @@ export function postRegisterController(ctx) {
             post('user', '', { username, password }, 'Basic')
                 .then(() => ctx.redirect('#/login'))
         } catch (err) {
-            alert(err)
+            alert(err);
         }
     } else {
-        alert('Passwords does not match.')
+        alert('Passwords does not match.');
     }
 };
 export function postLoginController(ctx) {
@@ -112,14 +112,14 @@ export function postLoginController(ctx) {
     try {
         post('user', 'login', { username, password }, 'Basic')
             .then(userInfo => {
-                sessionStorage.setItem('userId', userInfo._id)
+                sessionStorage.setItem('userId', userInfo._id);
                 sessionStorage.setItem('authtoken', userInfo._kmd.authtoken);
                 sessionStorage.setItem('username', userInfo.username);
                 ctx.redirect('#/home');
             })
             .catch(console.error)
     } catch (err) {
-        console.log(err)
+        console.log(err);
     }
 };
 export function postCreateController(ctx) {
