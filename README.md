@@ -2,4 +2,4 @@
 
 ## node_modules folder is missing.
 
-### npm install
+> npm install
