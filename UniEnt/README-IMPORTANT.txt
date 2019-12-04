@@ -1,1 +1,2 @@
-Run "npm install" before open.
+
+> Run "npm install" before continue!
